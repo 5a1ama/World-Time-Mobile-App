@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Viewtime extends StatefulWidget {
-  const Viewtime({super.key});
+class ViewTime extends StatefulWidget {
+  const ViewTime({super.key});
 
   @override
-  State<Viewtime> createState() => _Viewtime();
+  State<ViewTime> createState() => _ViewTime();
 }
 
-class _Viewtime extends State<Viewtime> {
+class _ViewTime extends State<ViewTime> {
 
   @override
   void initState() {
