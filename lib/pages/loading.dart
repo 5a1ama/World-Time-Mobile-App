@@ -14,26 +14,26 @@ class _LoadingState extends State<Loading> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setupWorldTime(context);
+      setupWorldTime();
     });
   }
 
-  void setupWorldTime(BuildContext context) async {
+  void setupWorldTime() async {
     try {
       dynamic args = ModalRoute.of(context)!.settings.arguments as Map;
       WorldTime instance = args['instance'];
       String time = await instance.getTime();
 
-      Navigator.pushReplacementNamed(context, '/viewTime', arguments: {
-        'location': instance.location,
-        'flag': instance.flag,
-        'time': time,
-        'isDayTime': instance.isDayTime
-      });
+      if(mounted) {
+        Navigator.pushReplacementNamed(context, '/viewTime', arguments: {
+          'location': instance.location,
+          'flag': instance.flag,
+          'time': time,
+          'isDayTime': instance.isDayTime
+        });
+      }
     } catch (e) {
       print('Error fetching time: $e');
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Failed to load time data')));
     }
   }
 
